@@ -14,6 +14,8 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Or visit [this link](twitter-clone-andreik.vercel.app)
+
 ## Technologies used
 
 - [Next.js](https://nextjs.org) - this was just a matter of preference. This could easily be a react SPA, but I just like Next.js, so decided to go with it for a change.
