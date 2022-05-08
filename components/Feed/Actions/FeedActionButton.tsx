@@ -11,10 +11,10 @@ export const FeedActionButton = ({
   ...otherProps
 }: IFeedActionButton) => {
   const buttonClasses = clsx(
-    'rounded-full border border-gray-400 px-4 py-2 text-sm duration-200 ',
+    'rounded-full border border-dark-gray px-4 py-2 text-sm duration-200 ',
     {
-      'bg-black text-white hover:bg-gray-800': !active,
-      'bg-white text-black hover:bg-gray-800 hover:text-white': active,
+      'bg-black text-light-gray hover:bg-gray-800': !active,
+      'bg-white text-black hover:bg-gray-800 hover:text-light-gray': active,
     }
   );
   return (

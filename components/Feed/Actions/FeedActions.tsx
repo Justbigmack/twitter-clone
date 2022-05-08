@@ -14,7 +14,7 @@ interface IFeedActions {
 export const FeedActions = memo(({ setActiveFilter }: IFeedActions) => {
   const [activeButton, setActiveButton] = useState(ActiveFeedActionButtons.All);
   return (
-    <div className="flex w-full items-center justify-around border-b border-white/25 py-9">
+    <div className="flex w-full items-center justify-around border-b border-gray-subtle py-9">
       <FeedActionButton
         onClick={() => {
           setActiveFilter(false);

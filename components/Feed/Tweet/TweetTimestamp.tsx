@@ -26,7 +26,7 @@ export const TweetTimestamp = memo(({ countdownObs, id }: ITweetTimestamp) => {
   const displayedText =
     differenceInSeconds === 0 ? 'Now' : `${differenceInSeconds}s`;
 
-  return <span className="text-[15px] text-gray-400">{displayedText}</span>;
+  return <span className="text-[15px] text-dark-gray">{displayedText}</span>;
 });
 
 TweetTimestamp.displayName = 'TweetTimestamp';

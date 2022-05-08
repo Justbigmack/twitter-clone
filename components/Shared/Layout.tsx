@@ -7,7 +7,7 @@ interface ILayout {
 export const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <div className="flex min-h-screen w-full bg-black">
-      <div className="mx-auto flex w-full max-w-[800px]">
+      <div className="mx-auto flex w-full max-w-[900px]">
         <header role="banner">
           <Navigation />
         </header>
