@@ -5,7 +5,7 @@ import { NavLink } from './NavLink';
 export const Navigation: React.FC = () => {
   return (
     <nav
-      className="flex h-full flex-col gap-1 p-1 sm:px-3 md:p-1 lg:p-3"
+      className="sticky top-0 flex h-screen flex-col gap-1 p-1 sm:px-3 md:p-1 lg:p-3 xl:w-[275px]"
       aria-label="Primary"
       role="navigation"
     >

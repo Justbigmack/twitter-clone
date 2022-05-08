@@ -26,13 +26,13 @@ export const TweetLike = ({ id, liked }: ITweetLike) => {
 
   return (
     <div
-      className="group -ml-2 mt-3 flex w-auto select-none items-center text-gray-400 hover:cursor-pointer"
+      className="group -ml-2 mt-3 inline-flex w-auto select-none items-center text-gray-400 hover:cursor-pointer"
       aria-label="likes"
       data-cy={'tweetLikeButton'}
       role="button"
       onClick={() => triggerTweetLike(id)}
     >
-      <div className="mr-1 flex items-center justify-center rounded-full p-2 duration-200 group-hover:bg-red-900/25">
+      <div className="mr-1 inline-flex items-center justify-center rounded-full p-2 duration-200 group-hover:bg-red-900/25">
         <LikeIcon
           className={iconClasses}
           data-cy={liked ? 'likedTweet' : 'defaultTweet'}
