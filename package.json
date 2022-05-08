@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
@@ -28,6 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "autoprefixer": "^10.4.5",
     "babel-jest": "^28.1.0",
+    "cypress": "^9.6.0",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
