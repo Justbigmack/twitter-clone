@@ -14,7 +14,7 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Or visit [this link](twitter-clone-andreik.vercel.app)
+Or visit [this link](https://twitter-clone-andreik.vercel.app)
 
 ## Technologies used
 
