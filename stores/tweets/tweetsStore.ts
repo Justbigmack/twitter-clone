@@ -22,10 +22,11 @@ export const tweetsStore = {
     subject.next(state);
   },
   getTweet: (tweetId: string) => state[tweetId],
-  removeOutdatedTweets: () => {
+  removeOutdatedTweets: (timeInSeconds: number) => {
     const currentTweets = { ...state };
     const filteredKeyValPairs = Object.entries(currentTweets).filter(
-      ([, tweetData]) => calcTimeDifferenceInSeconds(tweetData.timestamp) <= 30
+      ([, tweetData]) =>
+        calcTimeDifferenceInSeconds(tweetData.timestamp) <= timeInSeconds
     );
     const recentTweets = Object.fromEntries(filteredKeyValPairs);
     state = recentTweets;

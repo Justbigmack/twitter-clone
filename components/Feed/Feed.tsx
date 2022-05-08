@@ -26,7 +26,7 @@ export const Feed: React.FC = () => {
   useEffect(() => {
     const tweetsStoreSubscription = subscribeToTweetsStore(setTweetsData);
     const tweetsSubscription = tweets.subscribe((tweetData) => {
-      removeOutdatedTweets();
+      removeOutdatedTweets(30);
       addTweet(tweetData);
     });
 
