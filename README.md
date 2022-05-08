@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [Next.js](https://nextjs.org) - this was just a matter of preference. This could easily be a react SPA, but I just like Next.js, so decided to go with it for a change.
 - [rxjs](https://rxjs.dev/) - this was a task requiremnt, so a no brainer.
-- [tailwindcss] - once you get past the learning curve, tailwind speeds up the developmend, so I went with it. Also a matter of preference
+- [tailwindcss] - once you get past the learning curve, tailwind speeds up the developmend, so I went with it. Also a matter of preference. With tailwind it is a bit of hustle to set up theming, so there is no theming (dark / light) support for this app. I just went for a darker one.
 - other utility packages (like uuid, clsx, etc.)
 
 ## Thinking process
@@ -57,11 +57,11 @@ Looking at twitter, they have a timestamp (like, 1 sec ago, 2m ago) of when the 
 
 ## Testing
 
-I added some test files to the functionality that made most sense to me. I wanted to add some cypress tests and test the app e2e, but honestly, there isn't much to test, so I skipped that part.
+I added some tests to the store and also wrote some cypress tests. I didn't go for 100% test coverage, since testing practices and standards differ from company to company and I think this task is just meant to give you an impression of how I would approach something like that.
 
 ## What I would have done differently
 
-- State management: rxjs felt a little dated in terms of state management. I don't have much experience with exjs, so it is quite possible that I am just not aware of how to do that, but I didn't find a way to subscribe to individual item updates in the store. Instead of exjs subjects I would go for a library like Zustand that is much more predictable, requires way less boilerplate and provides automatic subscription. With functions written correctly, it is possible to significantly reduce propr drilling and some of the props I am passing wouldn't need passing + the components would actually rerender on their own.
+- State management: rxjs felt a little dated in terms of state management. I don't have much experience with rxjs, so it is quite possible that I am just not aware of how to do that, but I didn't find a way to subscribe to individual item updates in the store. Instead of rxjs subjects I would go for a library like Zustand that is much more straightforward, requires way less boilerplate and provides automatic subscription. With functions written correctly, it is possible to significantly reduce propr drilling and some of the props I am passing wouldn't need passing + the components would actually rerender on their own.
 - Item fetching strategy: I would avoid adding items directly each x seconds, unless it is a business requirement, because it is quite expensive to rerender the list and filter it in real time. I would steer towards adding a button showing that there are new items that the user can fetch and clicking on it would fetch the items. Or something similar.
 
 ## General notes
