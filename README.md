@@ -47,7 +47,7 @@ To satisfy the fourth requirement, I had to update an entry in the store, so I a
 
 Filter buttons is memoized section that filters the tweets one level above the component. To show the like count we still need to filter through all the items that are in the store, so that is what I did.
 
-# Sixth requirement
+### Sixth requirement
 
 To satisfy that requirement a method has been added to the store to clear out the state.
 
