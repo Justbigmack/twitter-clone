@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a simplified version of a Twitter homepage.
 
-## Getting Started
+I will go over the choices I made while creating this app and will do my best to explain why I made that choice.
+
+## How to run
 
 First, run the development server:
 
@@ -12,23 +14,56 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Technologies used
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [Next.js](https://nextjs.org) - this was just a matter of preference. This could easily be a react SPA, but I just like Next.js, so decided to go with it for a change.
+- [rxjs](https://rxjs.dev/) - this was a task requiremnt, so a no brainer.
+- [tailwindcss] - once you get past the learning curve, tailwind speeds up the developmend, so I went with it. Also a matter of preference
+- other utility packages (like uuid, clsx, etc.)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Thinking process
 
-## Learn More
+I do not have much experience with rxjs. I have used other tools to achieve the same (or similar) tasks before. I haven't used it for state management either, so it was a learning curve.
 
-To learn more about Next.js, take a look at the following resources:
+First I had to read quite a bit of documentation to understand what is going with rxjs and what it does (but mostly how one can actually manage state with it). Then I tried to replicate Twitter UI (not pixel-by-pixel, but so that it would look somewhat similar). I didn't bother too much with icons and colors.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Then I started to think how I can actually accomplish the task. The first choice I had to make was how to store the list : array of objects or object of key - value pairs. I chose the latter, because it would make CRUD operations on it a lot easier and looping / filtering could be done with keys, values or both at the same time.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Second requirement
 
-## Deploy on Vercel
+Second requirement was to render tweets as a list and order the list by date descending. That could be done by ensuring that you add the new tweet before you spread the existing tweets in the store. It would place the newly created tweet at the top and react would render it on top.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For the third sub-requirement of never changing the tweets observable: I am not sure, if I broke the rules, but I did add some data to the tweets themselves to make them easier to render / perform operations on.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Third requirement
+
+Third requirement was to not show entries older than 30 sec in the list anymore. I thought that it would be best to actually remove old entries from the list and not filter the actual list, because after a while all the invisible entries would make the tweets store bulky and difficult to loop through. That would lead to poorer performance the longer user stayed on the page. And if I removed those, filtering operations would not be expensive with so few items in the store. I decided to do that when the new item is added to the feed. That doesn't guarantee the hard 30 sec cut of outdated tweets, but that made more sense UX-wise, so I went with that approach.
+
+# Fourth requirement
+
+To satisfy the fourth requirement, I had to update an entry in the store, so I added a method for it to the store. Updating a tweet would rerender the whole list, so I memoized the single tweet component to not be rerendered all the time. This rerndering is not very expensive, but you do gain performance overall, because addition of tweets is fired quite frequently.
+
+# Fifth requirement
+
+Filter buttons is memoized section that filters the tweets one level above the component. To show the like count we still need to filter through all the items that are in the store, so that is what I did.
+
+# Sixth requirement
+
+To satisfy that requirement a method has been added to the store to clear out the state.
+
+## Other challenges
+
+Looking at twitter, they have a timestamp (like, 1 sec ago, 2m ago) of when the tweet was posted. I wanted to add the same feature, but I didn't want it to rerender on every tweet update, so this component is also memoized. But all the tweets' timestamps on Twitter actually update at the same time. I tried to achieve that by adding an observer in Feed component that would start one instance of countdown and emmit an event every 1000 miliseconds. By passing it to the timestamp component as a prop, I could make the timestamp subscribe to it and update its own state. It is not as flawless, but it very close to being synchronous.
+
+## Testing
+
+I added some test files to the functionality that made most sense to me. I wanted to add some cypress tests and test the app e2e, but honestly, there isn't much to test, so I skipped that part.
+
+## What I would have done differently
+
+- State management: rxjs felt a little dated in terms of state management. I don't have much experience with exjs, so it is quite possible that I am just not aware of how to do that, but I didn't find a way to subscribe to individual item updates in the store. Instead of exjs subjects I would go for a library like Zustand that is much more predictable, requires way less boilerplate and provides automatic subscription. With functions written correctly, it is possible to significantly reduce propr drilling and some of the props I am passing wouldn't need passing + the components would actually rerender on their own.
+- Item fetching strategy: I would avoid adding items directly each x seconds, unless it is a business requirement, because it is quite expensive to rerender the list and filter it in real time. I would steer towards adding a button showing that there are new items that the user can fetch and clicking on it would fetch the items. Or something similar.
+
+## General notes
+
+I did my best to do everything the rxjs way, but I was not 100% sure if that was the right way to go with it, so if you have any feedback, it will be really appreciated.
