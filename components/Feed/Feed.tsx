@@ -40,7 +40,7 @@ export const Feed: React.FC = () => {
     <div className="h-full w-full max-w-[600px] border-x border-white/25 text-white">
       <FeedActions setActiveFilter={setActiveFilter} />
       <TweetLikeCount likedTweetsCount={likedTweets.length} />
-      <section>
+      <section data-cy="tweetFeed">
         {filteredTweets.map((tweet) => {
           const { id, liked } = tweet;
           return (

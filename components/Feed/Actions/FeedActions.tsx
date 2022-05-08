@@ -21,6 +21,7 @@ export const FeedActions = memo(({ setActiveFilter }: IFeedActions) => {
           setActiveButton(ActiveFeedActionButtons.All);
         }}
         active={activeButton === ActiveFeedActionButtons.All}
+        data-cy="showAllTweetsButton"
       >
         Show all tweets
       </FeedActionButton>
@@ -30,10 +31,14 @@ export const FeedActions = memo(({ setActiveFilter }: IFeedActions) => {
           setActiveButton(ActiveFeedActionButtons.Liked);
         }}
         active={activeButton === ActiveFeedActionButtons.Liked}
+        data-cy="showLikedTweetsButton"
       >
         Show liked tweets
       </FeedActionButton>
-      <FeedActionButton onClick={tweetsStore.clearTweets}>
+      <FeedActionButton
+        onClick={tweetsStore.clearTweets}
+        data-cy="clearTweetsButton"
+      >
         Clear Tweets
       </FeedActionButton>
     </div>

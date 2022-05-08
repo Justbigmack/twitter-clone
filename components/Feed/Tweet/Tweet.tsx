@@ -14,7 +14,10 @@ export const Tweet = memo(({ countdownObs, id, liked }: ITweetComponent) => {
   const { author, content } = tweetsStore.getTweet(id);
 
   return (
-    <div className="flex w-full border-b border-white/25 px-4 py-3">
+    <div
+      className="flex w-full border-b border-white/25 px-4 py-3"
+      data-cy="tweet"
+    >
       <div className="mr-3 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-400">
         <span className="text-[15px]">
           {author.charAt(0).toUpperCase() ?? 'A'}
