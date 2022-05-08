@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [Next.js](https://nextjs.org) - this was just a matter of preference. This could easily be a react SPA, but I just like Next.js, so decided to go with it for a change.
 - [rxjs](https://rxjs.dev/) - this was a task requiremnt, so a no brainer.
-- [tailwindcss] - once you get past the learning curve, tailwind speeds up the developmend, so I went with it. Also a matter of preference. With tailwind it is a bit of hustle to set up theming, so there is no theming (dark / light) support for this app. I just went for a darker one.
+- [tailwindcss](https://tailwindcss.com) - once you get past the learning curve, tailwind speeds up the developmend, so I went with it. Also a matter of preference. With tailwind it is a bit of hustle to set up theming, so there is no theming (dark / light) support for this app. I just went for a darker one.
 - other utility packages (like uuid, clsx, etc.)
 
 ## Thinking process
