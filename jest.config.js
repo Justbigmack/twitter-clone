@@ -1,7 +1,6 @@
 module.exports = {
-  setupFilesAfterEnv: ["./jest.setup.js"],
+  setupFilesAfterEnv: ['./jest.setup.js'],
   moduleNameMapper: {
-    "^utils(.*)$": "<rootDir>/utils$1",
-
+    '^utils(.*)$': '<rootDir>/utils$1',
   },
 };
