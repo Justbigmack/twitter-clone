@@ -29,21 +29,21 @@ First I had to read quite a bit of documentation to understand what is going wit
 
 Then I started to think how I can actually accomplish the task. The first choice I had to make was how to store the list : array of objects or object of key - value pairs. I chose the latter, because it would make CRUD operations on it a lot easier and looping / filtering could be done with keys, values or both at the same time.
 
-# Second requirement
+### Second requirement
 
 Second requirement was to render tweets as a list and order the list by date descending. That could be done by ensuring that you add the new tweet before you spread the existing tweets in the store. It would place the newly created tweet at the top and react would render it on top.
 
 For the third sub-requirement of never changing the tweets observable: I am not sure, if I broke the rules, but I did add some data to the tweets themselves to make them easier to render / perform operations on.
 
-# Third requirement
+### Third requirement
 
 Third requirement was to not show entries older than 30 sec in the list anymore. I thought that it would be best to actually remove old entries from the list and not filter the actual list, because after a while all the invisible entries would make the tweets store bulky and difficult to loop through. That would lead to poorer performance the longer user stayed on the page. And if I removed those, filtering operations would not be expensive with so few items in the store. I decided to do that when the new item is added to the feed. That doesn't guarantee the hard 30 sec cut of outdated tweets, but that made more sense UX-wise, so I went with that approach.
 
-# Fourth requirement
+### Fourth requirement
 
 To satisfy the fourth requirement, I had to update an entry in the store, so I added a method for it to the store. Updating a tweet would rerender the whole list, so I memoized the single tweet component to not be rerendered all the time. This rerndering is not very expensive, but you do gain performance overall, because addition of tweets is fired quite frequently.
 
-# Fifth requirement
+### Fifth requirement
 
 Filter buttons is memoized section that filters the tweets one level above the component. To show the like count we still need to filter through all the items that are in the store, so that is what I did.
 
